@@ -1,11 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
-import Try from './components/try';
+import Header from './pages/header';
+import Footer from './pages/footer';
+import { AllRoutes } from './pages/All_routes';
+import { Box } from '@chakra-ui/react';
 
 function App() {
   return (
     <div className="App">
-      <Try />
+      <Header />
+      <Box pt={"20px"} pb="20px">
+        <AllRoutes />
+      </Box>
+
+      <Footer />
     </div>
   );
 }
