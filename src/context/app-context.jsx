@@ -1,4 +1,24 @@
-import { createContext } from "react"
+import { createContext, useState } from "react"
 
-const AppContext = createContext(defaultValue);
+export const AppContext = createContext({});
+
+function AppContextProvider({ children }) {
+
+    const [userList, setUserList] = useState([{ email: 'swati@gmail.com', password: '1234', name: 'Swati Kharote' }]);
+
+    const updateUserList = (user) => {
+        setUserList([...userList, user]);
+    }
+
+    return (
+        <AppContext.Provider value={{ userList, updateUserList }}>
+            {children}
+        </AppContext.Provider>
+    );
+}
+
+export default AppContextProvider;
+
+
+
 
