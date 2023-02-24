@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Container, Flex, Text, Spacer, H4, Link, Icon } from "@chakra-ui/react"
+import { Box, Button, Container, Flex, Text, Spacer, H4, Icon } from "@chakra-ui/react"
 import { BsFacebook } from "react-icons/bs"
 import { GrLinkedinOption } from "react-icons/gr";
 import { GrGooglePlus } from "react-icons/gr"
@@ -8,6 +8,7 @@ import { ImYoutube2 } from "react-icons/im"
 import { DiApple } from "react-icons/di"
 import { SiAndroidauto } from "react-icons/si"
 import { DiWindows } from "react-icons/di"
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
@@ -15,7 +16,7 @@ function Footer() {
             {/* left */}
             <Box width="60%" pr={2} mt={3} borderRight="1px solid #999">
                 <Flex justifyContent={"space-between"} alignItems="center" fontSize="14px" gap={4} pb={3} >
-                    <Link path="/about" style={{ textDecoration: "none" }}>About Us</Link>
+                    <Link to="/about" style={{ textDecoration: "none" }}>About Us</Link>
                     <Link style={{ textDecoration: "none" }}>Contact Us</Link>
                     <Link style={{ textDecoration: "none" }}>Careers</Link>
                     <Link style={{ textDecoration: "none" }}>Qicker Vedios</Link>
