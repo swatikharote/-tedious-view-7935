@@ -1,6 +1,7 @@
 import { Box, Flex, Heading, Image, Text, Icon, Spacer, Button } from '@chakra-ui/react'
 import React from 'react';
 import { BiRupee } from "react-icons/bi";
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const style = {
@@ -23,6 +24,8 @@ const style = {
 }
 
 function ProdComp({ product }) {
+    const navigate = useNavigate();
+
     return (
         <Box style={style.box}>
             <Flex justifyContent={"center"} bg={"#f5f5f5"} h="200px">
@@ -37,7 +40,8 @@ function ProdComp({ product }) {
                     <Text fontWeight={"100"}>{product.location}</Text>
                 </Flex>
                 <Flex mt={4}>
-                    <Button border={"1px solid #0083CA"} bg="none" color={"#0083CA"}>
+                    <Button border={"1px solid #0083CA"} bg="none" color={"#0083CA"} onClick={() => navigate("/product/" + product.id)}>
+
                         View
                     </Button>
                     <Spacer />

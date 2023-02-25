@@ -60,9 +60,11 @@ function Header() {
                 </Flex>
 
                 <Flex mt={5} alignItems="center" fontSize="15px" justifyContent={"space-between"} >
-                    <Flex gap={1}>
+                    <Flex gap={1} width="200px" alignItems={"center"}>
                         <Icon as={AiOutlineMenu} fontSize="26px"></Icon>
-                        <Image maxWidth="47%" src='	https://teja8.kuikr.com/module_assets/images/quikr_bazaar_logo.png'></Image>
+                        <Link to={"/"}>
+                            <Image src='../retro-resale-resize.jpeg'></Image>
+                        </Link>
                     </Flex>
 
                     <Flex alignItems="center" >
@@ -106,3 +108,6 @@ function Header() {
 
 }
 export default Header
+
+
+
