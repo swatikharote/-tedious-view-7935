@@ -1,7 +1,7 @@
 import { Box, Button, Container, Flex, FormControl, Input, Text } from '@chakra-ui/react';
 import { update } from 'lodash';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/app-context';
 import "./page.css";
 
@@ -9,12 +9,15 @@ function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const login = (e) => {
         e.preventDefault();
         const res = appContext.userList.filter(item => item.email == email && item.password == password);
         if (res.length) {
-            alert("LOGIN")
+            appContext.updateLoginUser(res[0].name);
+            alert("LOGIN");
+            navigate("/")
         } else {
             alert("User name or Password is incorrect");
         }
@@ -22,10 +25,6 @@ function Login() {
 
     const appContext = useContext(AppContext);
 
-    const test = () => {
-        const user = { email, password }
-        appContext.updateUserList(user)
-    }
 
 
     return (
