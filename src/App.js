@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Box pt={"20px"} pb="20px">
+      <Box pt={"20px"} pb="20px" bg="#f3f3f3">
         {/* <Box >
           <Spinner position={"absolute"} transform={"translate(-50%, -50%)"} top="300px" size='xl' />
         </Box> */}

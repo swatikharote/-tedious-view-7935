@@ -25,6 +25,7 @@ const style = {
 
 function ProdComp({ product }) {
     const navigate = useNavigate();
+    const formatter = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 8 })
 
     return (
         <Box style={style.box}>
@@ -35,7 +36,7 @@ function ProdComp({ product }) {
                 <Text style={style.overlay}>{product.productName}</Text>
                 <Flex alignItems={"center"} fontSize="18px" fontWeight={"bold"} mt={4}>
                     <Icon as={BiRupee}></Icon>
-                    <Text>{product.price}</Text>
+                    <Text>{formatter.format(product.price)}</Text>
                     <Spacer />
                     <Text fontWeight={"100"}>{product.location}</Text>
                 </Flex>

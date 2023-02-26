@@ -8,7 +8,7 @@ import React from 'react'
 
 function LinkBox({ list, image }) {
     return (
-        <Box w="28%" mt="20px" boxShadow={"xs"} borderRadius="8px">
+        <Box w="28%" mt="20px" boxShadow={"xs"} borderRadius="8px" bg="#fff">
             <Image src={image} />
             {list.map(item => {
                 return (

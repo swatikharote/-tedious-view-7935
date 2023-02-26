@@ -27,9 +27,9 @@ function ProdDetails() {
     }
 
     return (
-        <Box className='main'>
+        <Box className='main' bg="#fff" p={2}>
             <Flex justifyContent={"space-between"}>
-                <Box width="58%" h="500px" overflowY={"scroll"}>
+                <Box width="58%" h="650px" overflowY={"scroll"}>
                     <Flex justifyContent={"center"}>
                         <Image w="75%" src={prod.image}></Image>
                     </Flex>

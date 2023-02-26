@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
     Box, SimpleGrid, IconButton, Heading, useColorMode, Flex, Icon, Spacer, Text,
     Image, Select, Input, Button, Divider
 } from '@chakra-ui/react';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { BiBriefcaseAlt2, BiStoreAlt } from 'react-icons/bi';
 import { MdMobileScreenShare } from 'react-icons/md';
 import { VscTag } from 'react-icons/vsc';
@@ -12,11 +12,84 @@ import { BsCart, BsSearch } from 'react-icons/bs';
 import { AiOutlineMenu } from "react-icons/ai"
 import { GoLocation } from "react-icons/go";
 import { CgProfile } from "react-icons/cg"
+import { AppContext } from '../context/app-context';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import "../pages/page.css";
 
 
 
 
 function Header() {
+
+    const apx = useContext(AppContext);
+
+    const prodSearch = apx.products.map(m => { return { id: m.id, name: m.productName } });
+
+    const navigate = useNavigate();
+
+    const [search, setSearch] = useState("");
+
+    const items = [
+        {
+            id: 'apple',
+            name: "Apple laptops"
+        },
+        {
+            id: 'mobile',
+            name: "mobile"
+        },
+        {
+            id: 'home_lifestyle',
+            name: "furniture"
+        },
+        {
+            id: 'electronics',
+            name: "electronics"
+        }
+    ]
+
+    const handleOnSearch = (string, results) => {
+        // onSearch will have as the first callback parameter
+        // the string searched and for the second the results.
+        setSearch(string);
+        // console.log(search);
+
+    }
+
+    const handleOnHover = (result) => {
+        // the item hovered
+        console.log(2)
+    }
+
+    const handleOnSelect = (item) => {
+        // the item selected
+        console.log(3)
+    }
+
+    const handleOnFocus = () => {
+        // 
+        console.log("3")
+    }
+
+    const click = (e) => {
+        e.preventDefault();
+        // console.log("click", search);
+        const arr = items.filter(f => f.name == search)
+        if (arr.length) {
+            navigate("/search/" + arr[0].id)
+        }
+
+    }
+
+    const formatResult = (item) => {
+        return (
+            <>
+                <span style={{ display: 'block', textAlign: 'left' }}> {item.name}</span>
+            </>
+        )
+    }
+
+
     return (
 
         <Box>
@@ -70,8 +143,8 @@ function Header() {
                     <Flex alignItems="center" >
                         <Flex alignItems="center">
                             <Icon as={GoLocation}> </Icon>
-                            <Text w="47%">All India</Text>
-                            <Select placeholder='All Categories' size='md' borderRadius="none" >
+                            <Text w="20%">All India</Text>
+                            <Select placeholder='All Categories' size='md' borderRadius="none" w="25%">
                                 <option>All Categories</option>
                                 <option>Car & Bikes</option>
                                 <option>Mobiles & Tables</option>
@@ -80,23 +153,41 @@ function Header() {
                                 <option>Services</option>
                                 <option>Home & Lifestyle</option>
                                 <option>Education & Traning</option>
-
                             </Select>
-                            <Input placeholder='Search in All india' size='md' borderRadius="none" />
-                            <IconButton borderRadius="none"
-                                colorScheme='blue'
-                                aria-label='Search database'
-                                as={BsSearch}
-                                p={3}
-                            />
+                            <form onSubmit={click}>
+                                <Flex  >
+                                    <Box w="400px">
+                                        <ReactSearchAutocomplete className="border"
+                                            items={items}
+                                            onSearch={handleOnSearch}
+                                            onHover={handleOnHover}
+                                            onSelect={handleOnSelect}
+                                            onFocus={handleOnFocus}
+                                            autoFocus
+                                            formatResult={formatResult}
+                                        />
+                                    </Box>
+                                    <IconButton borderRadius="none"
+                                        colorScheme='blue'
+                                        aria-label='Search database'
+                                        as={BsSearch}
+                                        p={3}
+                                        type="submit"
+                                    />
+                                </Flex>
+
+                            </form>
                         </Flex>
                     </Flex>
 
                     <Flex>
 
                         <Flex alignItems={"center"}>
-                            <Icon as={CgProfile} fontSize="26px"></Icon>
-                            <Link to="/login">Login/Register</Link>
+                            {apx.loginUser == "" ?
+                                <Flex>
+                                    <Icon as={CgProfile} fontSize="26px"></Icon>
+                                    <Link to="/login">Login/Register</Link>
+                                </Flex> : <Text fontSize="15px">Hi... {apx.loginUser}</Text>}
                             <Button bg={'yellow'} ml={3}>Post Free Add</Button>
                         </Flex>
                     </Flex>

@@ -29,7 +29,7 @@ function PopularPrdt() {
 
 
     return (
-        <Box boxShadow="xs" mt={10}>
+        <Box boxShadow="xs" mt={10} bg="#fff">
             <Flex justify={"space-around"} alignItems="center" p={4} >
                 {image.map((item) => {
                     return (
